@@ -5,7 +5,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDWqbVh-eFA0A9uPgAf_q8fg4jP7rNnQDk",
+  apiKey: "AIzaSyDNo6sI41rRfupv-aV33z037Sftn1tuUkM",
   authDomain: "trehsotniki-base.firebaseapp.com",
   projectId: "trehsotniki-base",
   storageBucket: "trehsotniki-base.firebasestorage.app",
@@ -295,4 +295,5 @@ function initAnimations() {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
 }
