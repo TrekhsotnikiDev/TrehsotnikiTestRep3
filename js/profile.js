@@ -4,7 +4,7 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 import { getFirestore, doc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDWqbVh-eFA0A9uPgAf_q8fg4jP7rNnQDk",
+  apiKey: "AIzaSyDNo6sI41rRfupv-aV33z037Sftn1tuUkM",
   authDomain: "trehsotniki-base.firebaseapp.com",
   projectId: "trehsotniki-base",
   storageBucket: "trehsotniki-base.firebasestorage.app",
@@ -138,4 +138,5 @@ async function saveAvatar(path) {
         await updateDoc(doc(db, "users", user.uid), { avatar: path });
         window.closeAvatarModal();
     } catch (e) { alert("Ошибка сохранения."); }
+
 }
