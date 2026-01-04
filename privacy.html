@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trehsotniki | Политика конфиденциальности</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Специфичные стили для этой страницы */
+        body {
+            background-image: url('img/background_main_menu.png'); /* Фоновая картинка как на главной */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+        /* Затемнение фона, чтобы текст читался */
+        .page-overlay {
+            background: rgba(5, 5, 5, 0.85);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .privacy-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 40px;
+            background: rgba(15, 15, 20, 0.6); /* Полупрозрачный фон */
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent);
+            font-size: 20px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        p, li {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding-left: 20px;
+            position: relative;
+        }
+
+        li::before {
+            content: "►";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 10px;
+            top: 6px;
+        }
+
+        /* Стиль для блока с предупреждением */
+        .warning-box {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            border-left: 4px solid #ff4444;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            animation: pulse-border 2s infinite;
+        }
+
+        .warning-title {
+            color: #ff4444;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .warning-text strong {
+            color: #fff;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+            font-size: 12px;
+        }
+
+        .back-btn:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 157, 0, 0.4);
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.2); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-overlay">
+        
+        <div class="top-bar">
+            <div class="top-bar-content">
+                <div class="top-left-links">
+                    <a href="index.html">← Вернуться на главную</a>
+                </div>
+            </div>
+        </div>
+
+        <header class="main-header">
+            <div class="header-container">
+                <div class="brand-zone">
+                    <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:15px; color:inherit;">
+                        <img src="img/trehsotniki_logo.png" class="main-logo" alt="Logo">
+                        <span class="brand-name">TREHSOTNIKI</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div class="privacy-container">
+            <h1>Политика конфиденциальности</h1>
+
+            <div class="warning-box">
+                <div class="warning-title">
+                    ⚠️ ПРОТОКОЛ БЕЗОПАСНОСТИ
+                </div>
+                <div class="warning-text">
+                    <p>Данный сайт является учебным проектом (Pet-project) и находится в стадии <strong>BETA-тестирования</strong>.</p>
+                    <p style="color: #ffaaaa;">НАСТОЯТЕЛЬНО НЕ РЕКОМЕНДУЕТСЯ использовать здесь пароли, совпадающие с вашими паролями от:</p>
+                    <ul>
+                        <li style="color: #fff;">Банковских приложений</li>
+                        <li style="color: #fff;">Основной электронной почты</li>
+                        <li style="color: #fff;">Аккаунтов Steam / Discord</li>
+                    </ul>
+                    <p>Пожалуйста, используйте уникальный пароль для этого проекта.</p>
+                </div>
+            </div>
+
+            <p>Регистрируясь и используя данный ресурс, вы ("Пользователь") принимаете условия данного соглашения.</p>
+
+            <h2>1. СБОР ДАННЫХ</h2>
+            <p>Система сохраняет только минимально необходимые данные для работы механик игры:</p>
+            <ul>
+                <li><strong>Email адрес:</strong> используется как уникальный идентификатор (ID) пилота.</li>
+                <li><strong>Игровой профиль:</strong> статистика боев, настройки техники, список разблокированного оборудования.</li>
+                <li><strong>Инвентарь:</strong> данные о количестве внутриигровой валюты (Gold/XP).</li>
+            </ul>
+
+            <h2>2. ЗАЩИТА ИНФОРМАЦИИ</h2>
+            <p>Архитектура проекта построена на базе <strong>Google Firebase</strong>.</p>
+            <ul>
+                <li>Мы не имеем доступа к вашим паролям (они хранятся в зашифрованном виде на серверах Google).</li>
+                <li>Доступ к базе данных ограничен правилами безопасности (Security Rules), исключающими чтение данных другими игроками.</li>
+            </ul>
+
+            <h2>3. ОТКАЗ ОТ ОТВЕТСТВЕННОСТИ</h2>
+            <p>В связи со статусом разработки (Alpha/Beta):</p>
+            <ul>
+                <li>Проект предоставляется по принципу "как есть" (as is).</li>
+                <li>Администрация не гарантирует 100% аптайм серверов.</li>
+                <li>Возможны "вайпы" (сброс прогресса) в случае критических изменений в архитектуре базы данных (мы постараемся этого избежать).</li>
+                <li>Внутриигровая валюта не имеет реальной ценности и не подлежит обмену на фиатные деньги.</li>
+            </ul>
+
+            <a href="javascript:void(0)" onclick="history.back()" class="back-btn">Я ПРОЧИТАЛ И СОГЛАСЕН</a>
+        </div>
+
+        <footer style="margin-top: auto; padding: 20px; text-align: center; color: #555; font-size: 12px;">
+            <p>&copy; 2025 TREHSOTNIKI PROJECT. SECURITY PROTOCOL VER 1.0</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

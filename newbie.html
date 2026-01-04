@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trehsotniki | Новичку</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-left-links">
+                <a href="https://store.steampowered.com/app/552100/Brick_Rigs/" target="_blank"><img src="img/br_logo.png" class="steam-logo"></a>
+                <a href="store.html">Премиум магазин</a>
+                <a href="support.html">Центр поддержки</a>
+                <a href="https://discord.gg/8zg4FYbn" target="_blank"><img src="img/icons8-discord-48.png" class="discord-logo"></a>
+            </div>
+            <div class="top-right-stats">
+                <a href="profile.html">Профиль</a>
+                <div class="stat gold-stat"><img src="img/Zoloto2.png"> <span>...</span></div>
+                <div class="stat xp-stat"><img src="img/xp_ico.png"> <span>...</span></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-zone">
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:15px; color:inherit;">
+                    <img src="img/trehsotniki_logo.png" class="main-logo">
+                    <span class="brand-name">TREHSOTNIKI</span>
+                </a>
+            </div>
+            
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <span>ПРОЕКТ</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="news.html">Новости</a>
+                        <a href="maps.html">Карты</a>
+                        <a href="workshop.html">Мастерская</a>
+                        <a href="https://drive.google.com/drive/folders/13dSwBa0I4KRNHFESoOlXxc-BbAD4x64F" target="_blank" style="color: #00C851;">Скачать моды</a>
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <span>РУКОВОДСТВА</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="newbie.html">Новичку</a>
+                        <a href="economy.html">Экономика</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="auth-buttons">
+                <button class="login-btn-ghost" onclick="openModal('login')">ВХОД</button>
+                <button class="reg-btn-modern" onclick="openModal('register')">РЕГИСТРАЦИЯ</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header-animated">
+        <div class="page-header-bg" style="background-image: url('img/background_main_menu.png');"></div>
+        <div class="page-header-content">
+            <h1 style="font-family:'Orbitron'; font-size: 42px; color: var(--accent); margin: 0; text-shadow: 0 0 20px #000;">ИНСТРУКТАЖ</h1>
+            <p style="color: #ccc; font-size: 16px; margin-top: 10px;">Базовое руководство по выживанию и эксплуатации техники.</p>
+        </div>
+    </section>
+
+    <div id="auth-modal" class="modal-overlay">
+    <div class="modal-window">
+        <button class="close-modal" onclick="closeModal()">✕</button>
+        
+        <div class="modal-tabs">
+            <button id="tab-login" class="active" onclick="switchTab('login')">ВХОД</button>
+            <button id="tab-register" onclick="switchTab('register')">РЕГИСТРАЦИЯ</button>
+        </div>
+
+        <form id="form-login" class="auth-form active">
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="login-policy" required>
+                <label for="login-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">ВОЙТИ В СИСТЕМУ</button>
+        </form>
+
+        <form id="form-register" class="auth-form">
+            <div class="input-group">
+                <label>НОВЫЙ ПОЗЫВНОЙ</label>
+                <input type="text" placeholder="Придумайте ник" required>
+            </div>
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="reg-policy" required>
+                <label for="reg-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">СОЗДАТЬ АККАУНТ</button>
+        </form>
+    </div>
+</div>
+
+    <main class="guide-container">
+        
+        <h2 class="guide-section-title reveal">ПЕРВЫЕ ШАГИ</h2>
+        
+        <div class="step-card reveal">
+            <div class="step-number">01</div>
+            <div>
+                <h3 style="font-family:'Orbitron'; margin: 0 0 10px; color:#fff;">УСТАНОВКА МОДОВ</h3>
+                <p class="guide-text">Наш проект требует использования <strong>Brick Rigs Mod Kit</strong>. Без него кастомные карты с запеченным светом и физика модулей работать не будут. Скачайте актуальную версию в нашем Discord канале <code>#files</code>.</p>
+            </div>
+        </div>
+
+        <div class="step-card reveal" style="transition-delay: 0.2s;">
+            <div class="step-number">02</div>
+            <div>
+                <h3 style="font-family:'Orbitron'; margin: 0 0 10px; color:#fff;">МАСШТАБ 1:2.5</h3>
+                <p class="guide-text">Вся техника на сервере стандартизирована. Не пытайтесь заспавнить ванильные танки — они будут уничтожены системой защиты. Используйте технику из раздела <strong>«Мастерская»</strong>.</p>
+            </div>
+        </div>
+
+        <h2 class="guide-section-title reveal">БОЕВАЯ СИСТЕМА</h2>
+        <div class="step-card reveal">
+            <div class="step-number">⚠</div>
+            <div>
+                <h3 style="font-family:'Orbitron'; margin: 0 0 10px; color:#fff;">ЗОНЫ ПРОБИТИЯ</h3>
+                <p class="guide-text">В отличие от стандартной игры, здесь ваш танк не взрывается от одного попадания. Система урона разделена на модули:</p>
+                <ul class="guide-text" style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 5px;"><strong>Двигатель:</strong> Попадание замедляет танк. Возможен пожар.</li>
+                    <li style="margin-bottom: 5px;"><strong>Боеукладка (БК):</strong> Детонация и мгновенное уничтожение.</li>
+                    <li><strong>Экипаж:</strong> Контузия наводчика замедляет поворот башни.</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <footer><p>&copy; 2025 TREHSOTNIKI PROJECT.</p></footer>
+
+<script type="module" src="js/main.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

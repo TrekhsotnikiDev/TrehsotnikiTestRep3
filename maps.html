@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trehsotniki | Карты</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Стили для карт */
+        .maps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 30px; padding: 50px 10%; }
+        .map-card { background: #0d0d0d; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; position: relative; height: 300px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+        .map-card:hover { border-color: var(--accent); transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+        .map-bg { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.5s; filter: brightness(0.7); }
+        .map-card:hover .map-bg { transform: scale(1.1); filter: brightness(1); }
+        .map-info { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); transform: translateY(20px); transition: 0.3s; }
+        .map-card:hover .map-info { transform: translateY(0); }
+        .map-status { position: absolute; top: 15px; right: 15px; background: var(--accent); color: #000; padding: 4px 10px; font-weight: 700; font-size: 10px; border-radius: 2px; z-index: 2; }
+        .map-title { font-family: 'Orbitron'; font-size: 24px; margin: 0; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .map-details { display: flex; gap: 15px; margin-top: 5px; font-size: 12px; color: #ccc; opacity: 0; transition: 0.3s; }
+        .map-card:hover .map-details { opacity: 1; margin-top: 10px; }
+        
+        .page-header { padding: 120px 10% 40px; position: relative; background: url('img/background_main_menu.png') top center/cover no-repeat; }
+        .page-header::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.4) 50%, #050505 100%); z-index: 0; }
+        .header-content { position: relative; z-index: 1; }
+        .page-header h1 { font-family:'Orbitron'; color:var(--accent); font-size: 42px; margin-bottom: 10px; text-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .page-header p { color: #e0e0e0; max-width: 600px; font-size: 16px; line-height: 1.5; text-shadow: 0 2px 4px #000; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-left-links">
+                <a href="https://store.steampowered.com/app/552100/Brick_Rigs/" target="_blank"><img src="img/br_logo.png" class="steam-logo"></a>
+                <a href="store.html">Премиум магазин</a>
+                <a href="support.html">Центр поддержки</a>
+                <a href="https://discord.gg/8zg4FYbn" target="_blank"><img src="img/icons8-discord-48.png" class="discord-logo"></a>
+            </div>
+            <div class="top-right-stats">
+                <a href="profile.html">Профиль</a>
+                <div class="stat gold-stat"><img src="img/Zoloto2.png"> <span>...</span></div>
+                <div class="stat xp-stat"><img src="img/xp_ico.png"> <span>...</span></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-zone">
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:15px; color:inherit;">
+                    <img src="img/trehsotniki_logo.png" class="main-logo">
+                    <span class="brand-name">TREHSOTNIKI</span>
+                </a>
+            </div>
+            
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <span>ПРОЕКТ</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="news.html">Новости</a>
+                        <a href="maps.html">Карты</a>
+                        <a href="workshop.html">Мастерская</a>
+                        <a href="https://drive.google.com/drive/folders/13dSwBa0I4KRNHFESoOlXxc-BbAD4x64F" target="_blank" style="color: #00C851;">Скачать моды</a>
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <span>РУКОВОДСТВА</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="newbie.html">Новичку</a>
+                        <a href="economy.html">Экономика</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="auth-buttons">
+                <button class="login-btn-ghost" onclick="openModal('login')">ВХОД</button>
+                <button class="reg-btn-modern" onclick="openModal('register')">РЕГИСТРАЦИЯ</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="header-content"> 
+            <h1 class="reveal">ОПЕРАТИВНЫЕ КАРТЫ</h1>
+            <p class="reveal">Список доступных локаций для маневров в масштабе 1:2.5. Все карты оптимизированы для стабильной физики.</p>
+        </div>
+    </section>
+
+    <div class="maps-grid">
+        <div class="map-card reveal">
+            <div class="map-status">UE4 / BRMK</div>
+            <div class="map-bg" style="background-image: url('img/background_main_menu.png');"></div>
+            <div class="map-info">
+                <h3 class="map-title">ОДДЕРОВО</h3>
+                <div class="map-details"><span>☢️ ГОРОД</span><span>📐 2x2 КМ</span><span>👥 16 ИГРОКОВ</span></div>
+            </div>
+        </div>
+        <div class="map-card reveal" style="transition-delay: 0.2s;">
+            <div class="map-status" style="background: #444; color: #fff;">ТЕСТ</div>
+            <div class="map-bg" style="background-image: url('img/background_main_menu.png'); filter: hue-rotate(45deg) brightness(0.5);"></div>
+            <div class="map-info">
+                <h3 class="map-title">ПОЛИГОН Т-14</h3>
+                <div class="map-details"><span>🎯 ТРЕНИРОВКА</span><span>📐 1x1 КМ</span><span>👥 СОЛО</span></div>
+            </div>
+        </div>
+        <div class="map-card reveal" style="transition-delay: 0.4s; border-style: dashed; opacity: 0.5;">
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background: #111;">
+                <span style="font-family:'Orbitron'; color:#333; font-size: 20px;">CLASSIFIED</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="modal-overlay">
+    <div class="modal-window">
+        <button class="close-modal" onclick="closeModal()">✕</button>
+        
+        <div class="modal-tabs">
+            <button id="tab-login" class="active" onclick="switchTab('login')">ВХОД</button>
+            <button id="tab-register" onclick="switchTab('register')">РЕГИСТРАЦИЯ</button>
+        </div>
+
+        <form id="form-login" class="auth-form active">
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="login-policy" required>
+                <label for="login-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">ВОЙТИ В СИСТЕМУ</button>
+        </form>
+
+        <form id="form-register" class="auth-form">
+            <div class="input-group">
+                <label>НОВЫЙ ПОЗЫВНОЙ</label>
+                <input type="text" placeholder="Придумайте ник" required>
+            </div>
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="reg-policy" required>
+                <label for="reg-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">СОЗДАТЬ АККАУНТ</button>
+        </form>
+    </div>
+</div>
+
+    <footer><p>&copy; 2025 TREHSOTNIKI PROJECT.</p></footer>
+
+<script type="module" src="js/main.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

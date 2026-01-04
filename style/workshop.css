@@ -1,0 +1,365 @@
+/* style/workshop.css — V14.0 MOBILE OPTIMIZED */
+
+/* --- 1. КАРКАС --- */
+body {
+    height: 100vh; /* Убрал !important для гибкости */
+    width: 100%;
+    margin: 0;
+    background-color: #050505;
+    /* На десктопе оставляем скрытый скролл, если так задумано дизайном */
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar, .main-header {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 9999;
+    width: 100%;
+    background: #000;
+}
+
+.workshop-wrapper {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: hidden; /* На десктопе скрываем, контент внутри скроллится сам */
+    position: relative;
+    z-index: 1;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center;
+}
+
+.nav-back-btn {
+    background: transparent; border: 1px solid #444; color: #ffbb33;
+    padding: 8px 16px; font-family: 'Orbitron'; font-size: 12px; cursor: pointer;
+    margin-right: 20px; transition: 0.2s; text-transform: uppercase; border-radius: 4px;
+}
+.nav-back-btn:hover { background: #ffbb33; color: #000; box-shadow: 0 0 10px #ffbb33; }
+
+/* --- 2. ЭКРАНЫ МЕНЮ --- */
+.selection-screen {
+    width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    animation: fadeIn 0.5s ease-out; background: rgba(0,0,0,0.8); z-index: 200; position: absolute; top: 0; left: 0;
+    overflow-y: auto; /* Добавил скролл внутри скринов */
+}
+.screen-title { font-family: 'Orbitron'; color: #fff; font-size: 36px; margin-bottom: 60px; text-shadow: 0 0 20px rgba(255, 187, 51, 0.5); text-align: center;}
+.selection-grid { display: flex; gap: 60px; }
+
+.select-card {
+    width: 320px; height: 450px; border: 1px solid #333; position: relative; cursor: pointer; overflow: hidden; transition: 0.4s;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; background: #0a0a0a;
+}
+.select-card:hover { border-color: #ffbb33; transform: translateY(-15px); box-shadow: 0 20px 50px rgba(255, 187, 51, 0.15); }
+.card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.4; transition: 0.4s; filter: grayscale(100%); z-index: 0; }
+.select-card:nth-child(1) .card-bg { background-image: url('../img/bg_ground.jpg'); background-color: #222; } 
+.select-card:nth-child(2) .card-bg { background-image: url('../img/bg_air.jpg'); background-color: #111; }
+.select-card:hover .card-bg { opacity: 0.8; filter: grayscale(0%); transform: scale(1.1); }
+.select-card h2 { position: relative; z-index: 2; font-family: 'Orbitron'; font-size: 32px; margin: 0; color: #fff; }
+.select-card p { position: relative; z-index: 2; color: #ccc; margin-top: 10px; font-size: 14px; }
+.select-card.locked { opacity: 0.5; cursor: not-allowed; border-color: #222; }
+.lock-overlay { position: absolute; top: 20px; right: 20px; font-size: 24px; z-index: 10; }
+
+.nations-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; max-width: 1200px; width: 100%; padding: 0 20px; }
+.nation-btn {
+    background: rgba(255,255,255,0.03); border: 1px solid #333; color: #aaa; padding: 25px 10px; font-family: 'Orbitron'; font-size: 16px; cursor: pointer;
+    transition: 0.3s; text-align: center; clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+.nation-btn:hover { background: #ffbb33; color: #000; border-color: #ffbb33; font-weight: 800; transform: scale(1.05); }
+
+/* --- 3. ДЕРЕВО (СЕТКА) --- */
+.tree-screen { display: flex; flex-direction: column; width: 100%; height: 100%; position: relative; }
+.tree-container {
+    flex: 1 1 auto; overflow: auto; padding: 60px 40px;
+    display: flex; justify-content: center; align-items: flex-start;
+    /* Важно для тач-устройств: плавный скролл */
+    -webkit-overflow-scrolling: touch; 
+}
+.tree-container::-webkit-scrollbar { width: 8px; height: 8px; }
+.tree-container::-webkit-scrollbar-track { background: #0b0b0b; }
+.tree-container::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+
+.tree-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px); 
+    grid-auto-rows: min-content; 
+    column-gap: 20px; row-gap: 50px;
+    padding-bottom: 100px; margin: 0 auto;
+    padding-top: 0px;
+}
+
+.branch-title { display: none; }
+
+.rank-block {
+    display: flex; width: 100%; min-height: 160px; height: 100%; flex-direction: column; 
+    border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 20px; position: relative;
+    overflow: visible !important; 
+}
+.rank-header {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 30px; display: flex; align-items: center; justify-content: center; 
+    writing-mode: vertical-lr; transform: rotate(180deg); font-family: 'Orbitron'; color: #333; font-size: 10px; letter-spacing: 2px; 
+    background: rgba(255,255,255,0.02);
+}
+.rank-content {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-end; 
+    width: 100%; 
+    height: 100%; 
+    padding-left: 70px; 
+    gap: 60px; 
+    padding-bottom: 20px;
+    overflow: visible !important; 
+}
+.br-row { display: flex; align-items: center; gap: 40px; position: relative; }
+.br-label { position: absolute; left: -35px; font-family: 'Inter'; font-weight: 700; color: #555; font-size: 12px; }
+
+/* 4. КАРТОЧКА */
+.wt-card {
+    width: 220px; height: 80px; position: relative;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 20; 
+    background-color: #050505; 
+}
+
+.card-visual {
+    position: absolute; inset: 0; background: #141414; border: 1px solid #333;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: 0.2s; 
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    z-index: 10;
+}
+.card-visual::before { 
+    content: ''; position: absolute; inset: 0; 
+    background-image: url('../img/background_main_menu.png'); 
+    background-size: cover; background-position: center; 
+    opacity: 0.4; filter: grayscale(100%) contrast(1.2); 
+    transition: 0.3s; z-index: 0; 
+}
+
+.visual-stack {
+    position: relative; z-index: 2; display: flex; flex-direction: column; 
+    align-items: center; text-align: center; gap: 4px;
+}
+.type-icon {
+    font-size: 20px; line-height: 0.5; text-shadow: 0 2px 5px rgba(0,0,0,1); 
+    color: #888; transition: 0.3s;
+}
+.tank-name {
+    font-family: 'Orbitron'; font-size: 12px; color: #aaa; 
+    text-transform: uppercase; text-shadow: 0 2px 4px black; transition: 0.3s;
+}
+
+/* Ховер */
+.wt-card:hover .card-visual { border-color: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.15); }
+.wt-card:hover .card-visual::before { opacity: 0.8; filter: grayscale(0%); }
+.wt-card:hover .tank-name { color: #fff; transform: scale(1.2);}
+.wt-card:hover .type-icon { color: #fff; transform: scale(1.2); }
+
+/* Статусы */
+.wt-card.unlocked .card-visual { border-color: #00C851; background: linear-gradient(135deg, rgba(0, 40, 0, 0.9), #0a0a0a); }
+.wt-card.unlocked .type-icon { color: #00C851; text-shadow: 0 0 8px #00C851; }
+.wt-card.unlocked .tank-name { color: #eee; }
+
+.wt-card.can-research .card-visual { border-color: #ffbb33; background: linear-gradient(135deg, rgba(60, 40, 0, 0.8), #0a0a0a); }
+.wt-card.can-research .type-icon { color: #ffbb33; text-shadow: 0 0 8px #ffbb33; }
+
+.wt-card.premium .card-visual { border-color: #ffaa00; background: linear-gradient(135deg, #2b2200, #0a0a0a); }
+.wt-card.premium .type-icon, .wt-card.premium .tank-name { color: #ffaa00; }
+
+.wt-card.locked .card-visual { opacity: 0.5; border-style: dashed; border-color: #444; background: #0f0f0f; cursor: not-allowed; }
+
+/* 5. ЛИНИИ (СТРЕЛКИ) */
+.has-arrow-short::after, .has-arrow-long::after, .has-arrow-mid::after, .has-arrow-mega::after {
+    content: ''; position: absolute; top: 100%; left: 50%; margin-left: -1px; width: 2px; height: 100px; background: #333; z-index: -5; 
+}
+.wt-card.unlocked.has-arrow-short::after, .wt-card.unlocked.has-arrow-long::after,
+.wt-card.unlocked.has-arrow-mid::after, .wt-card.unlocked.has-arrow-mega::after { background: #00C851; box-shadow: 0 0 5px #00C851; }
+.wt-card.can-research.has-arrow-short::after, .wt-card.can-research.has-arrow-long::after,
+.wt-card.can-research.has-arrow-mid::after, .wt-card.can-research.has-arrow-mega::after { background: #ffbb33; box-shadow: 0 0 5px #ffbb33; }
+
+/* 6. ПАНЕЛЬ ИНФОРМАЦИИ */
+.tank-details-panel {
+    position: fixed; top: 0; right: -650px; /* Спрятана */
+    width: 500px; height: 100vh;
+    background: #0b0b0b; 
+    border-left: 1px solid #333;
+    box-shadow: -50px 0 100px rgba(0,0,0,0.9);
+    display: flex; flex-direction: column;
+    z-index: 10000;
+    transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tank-details-panel.open { right: 0; }
+
+.panel-close-btn {
+    position: absolute; top: 25px; right: 25px;
+    background: rgba(0, 0, 0, 0.8); border: 1px solid #ffbb33; color: #fff;
+    padding: 10px 20px; font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700;
+    cursor: pointer; z-index: 10001; text-transform: uppercase;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    transition: 0.3s;
+}
+.panel-close-btn:hover { background: #ffbb33; color: #000; box-shadow: 0 0 15px #ffbb33; }
+
+.panel-header {
+    height: 280px; position: relative; background: #111; border-bottom: 4px solid #ffbb33;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; overflow: hidden;
+    flex-shrink: 0; /* Чтобы шапка не сжималась */
+}
+.panel-img-bg {
+    position: absolute; inset: 0; background-image: url('../img/bg_ground.jpg');
+    background-size: cover; background-position: center; opacity: 0.6; filter: grayscale(20%); z-index: 0;
+    transition: 5s transform ease-out;
+}
+.tank-details-panel.open .panel-img-bg { transform: scale(1.1); }
+.panel-header-overlay { position: absolute; inset: 0; background: linear-gradient(to top, #0b0b0b 10%, transparent 100%); z-index: 1; }
+.panel-title-box { position: relative; z-index: 2; }
+.panel-title-box h2 {
+    font-family: 'Orbitron'; font-size: 36px; color: #fff; margin: 5px 0 0;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.8); line-height: 1; text-transform: uppercase; letter-spacing: 1px;
+}
+.class-badge {
+    display: inline-block; background: #ffbb33; color: #000; padding: 4px 8px; font-size: 11px; font-weight: 800;
+    text-transform: uppercase; font-family: 'Orbitron'; border-radius: 2px; box-shadow: 0 0 10px #ffbb33;
+}
+
+.panel-content { padding: 30px; flex-grow: 1; overflow-y: auto; background: #0b0b0b; }
+.panel-desc { color: #bbb; font-size: 14px; line-height: 1.6; margin-bottom: 40px; border-left: 3px solid #333; padding-left: 15px; font-style: italic; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
+.stat-box { background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 15px; border-radius: 4px; position: relative; overflow: hidden; }
+.stat-label { font-size: 10px; color: #666; font-weight: 700; margin-bottom: 5px; }
+.stat-value { font-family: 'Orbitron'; font-size: 16px; color: #fff; font-weight: 700; }
+.stat-bar { height: 3px; width: 100%; background: #222; margin-top: 10px; border-radius: 2px; }
+.stat-bar div { height: 100%; background: #ffbb33; box-shadow: 0 0 5px #ffbb33; }
+
+.panel-actions {
+    padding: 30px; background: #080808; border-top: 1px solid #222;
+    display: flex; flex-direction: column; gap: 20px; flex-shrink: 0;
+}
+.price-container { display: flex; justify-content: space-between; align-items: flex-end; }
+.price-label { font-size: 11px; color: #555; font-weight: 700; letter-spacing: 1px; }
+.price-val { font-family: 'Orbitron'; font-size: 28px; color: #ffbb33; font-weight: 700; text-shadow: 0 0 15px rgba(255, 157, 0, 0.3); }
+
+.research-btn {
+    width: 100%; padding: 20px; background: linear-gradient(90deg, #ff9d00, #ffbb33); border: none; color: #000;
+    font-family: 'Orbitron'; font-weight: 900; font-size: 18px; letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); transition: 0.2s;
+}
+.research-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 30px rgba(255, 157, 0, 0.4); filter: brightness(1.1); }
+.research-btn:disabled { background: #222; color: #555; cursor: not-allowed; box-shadow: none; }
+
+.panel-preview-box {
+    margin-top: 25px; width: 100%; height: 220px; background: #000; border: 1px solid #333;
+    position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; border-radius: 4px;
+}
+.panel-preview-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; z-index: 1; }
+.preview-border { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 80%, rgba(0,0,0,0.8)); pointer-events: none; z-index: 2; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ==============================================
+   МОБИЛЬНЫЙ ПАТЧ: ТОЛЬКО UI (Дерево не трогаем)
+   Вставить в конец workshop.css
+   ============================================== */
+
+@media (max-width: 900px) {
+
+    /* --- 1. ШАПКА САЙТА --- */
+    
+    /* Убираем верхнюю полоску с иконками (мешает на телефоне) */
+    .top-bar {
+        display: none !important;
+    }
+
+    /* Основная шапка: Лого сверху, меню снизу */
+    .header-container {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 10px 0 !important;
+    }
+
+    /* Логотип по центру */
+    .brand-zone {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    /* Меню делаем с горизонтальной прокруткой */
+    .main-nav {
+        width: 100%;
+        overflow-x: auto; /* Можно листать меню пальцем влево-вправо */
+        white-space: nowrap;
+        justify-content: flex-start;
+        padding: 0 15px 10px 15px; /* Отступы, чтобы пальцу было удобно */
+    }
+
+    /* Скрываем профиль в шапке (экономим место) */
+    .auth-buttons {
+        display: none !important;
+    }
+
+
+    /* --- 2. ОКНО ПОКУПКИ (ПАНЕЛЬ ТАНКА) --- */
+    
+    /* Растягиваем панель на весь экран */
+    .tank-details-panel {
+        width: 100% !important; 
+        right: -100% !important; /* Прячем полностью за экран */
+        z-index: 20000 !important; /* Поверх всего */
+    }
+
+    /* Когда открыта — выезжает на весь экран */
+    .tank-details-panel.open {
+        right: 0 !important;
+    }
+
+    /* Уменьшаем картинку танка, чтобы влез текст */
+    .panel-header {
+        height: 200px !important; 
+        padding: 15px !important;
+    }
+    
+    /* Уменьшаем огромный заголовок названия танка */
+    .panel-title-box h2 {
+        font-size: 24px !important;
+    }
+
+    /* Кнопку "Закрыть" делаем заметнее */
+    .panel-close-btn {
+        top: 15px;
+        right: 15px;
+        background: #000 !important; /* Черный фон, чтобы текст читался */
+        border-color: #ffbb33 !important;
+    }
+
+    /* Сетка характеристик (Броня/Пушка) — сжимаем отступы */
+    .stats-grid {
+        gap: 10px !important;
+    }
+
+
+    /* --- 3. ДЕРЕВО (ОСТАВЛЯЕМ КАК ЕСТЬ, НО РАЗРЕШАЕМ СКРОЛЛ) --- */
+    
+    .tree-container {
+        /* Жестко разрешаем скролл во все стороны */
+        overflow: auto !important; 
+        justify-content: flex-start !important; /* Прижимаем влево, чтобы не центрировалось криво */
+        padding: 20px !important;
+        
+        /* Плавный скролл для iOS */
+        -webkit-overflow-scrolling: touch; 
+    }
+    
+    /* Убираем попытки сжать дерево */
+    .tree-inner {
+        transform: scale(1); /* Масштаб 1:1, пусть будет крупным */
+    }
+}

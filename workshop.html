@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мастерская | Trehsotniki</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/workshop.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* === MOBILE LAYOUT V12 (COMPACT ROW) === */
+@media screen and (max-width: 900px) {
+
+    /* --- 1. ГЛОБАЛЬНЫЙ СБРОС --- */
+    body {
+        overflow-y: auto !important;
+        background: #050505 !important;
+        overflow-x: hidden !important;
+    }
+    .workshop-wrapper {
+        height: auto !important;
+        overflow: visible !important;
+        min-height: 100vh;
+    }
+
+    /* --- 2. ВЕРХНЯЯ ПОЛОСКА (ЗОЛОТО) --- */
+    .top-bar {
+        display: block !important;
+        background: #000 !important;
+        border-bottom: 1px solid #222;
+        padding: 5px 0 !important;
+        position: relative;
+        z-index: 50;
+    }
+    .top-bar-content {
+        display: flex !important; flex-direction: column !important; gap: 0 !important;
+    }
+    /* Статистика по центру */
+    .top-right-stats {
+        width: 100% !important; display: flex !important; justify-content: center !important; gap: 15px !important; order: 1 !important;
+    }
+    .top-right-stats > a { display: none !important; }
+    .stat {
+        background: #111; border: 1px solid #333; color: #ffbb33; padding: 4px 10px; border-radius: 4px; font-size: 11px !important; font-weight: 700; display: flex !important; align-items: center; gap: 5px;
+    }
+    .stat img { height: 12px !important; width: auto !important; }
+    .top-left-links { display: none !important; } /* Иконки скрываем */
+
+
+    /* --- 3. ГЛАВНАЯ ШАПКА (СТРОКА: ЛОГО + ПРОФИЛЬ) --- */
+    .main-header {
+        height: auto !important;
+        background: #080808 !important;
+        padding: 0 !important;
+        overflow: visible !important; /* Важно для выпадающего меню */
+        position: relative !important;
+        z-index: 100 !important;
+    }
+
+    .header-container {
+        display: flex !important;
+        flex-direction: row !important; /* В СТРОКУ! */
+        flex-wrap: wrap !important;     /* Разрешаем перенос (для меню) */
+        justify-content: space-between !important; /* Лого слева, Профиль справа */
+        align-items: center !important;
+        padding: 10px 10px !important;
+        height: auto !important;
+        gap: 0 !important;
+        position: relative !important;
+        overflow: visible !important;
+    }
+    
+    .nav-back-btn { display: none !important; }
+
+    /* ЛОГОТИП (СЛЕВА) - Порядок 1 */
+    .brand-zone {
+        width: auto !important;
+        flex: 0 1 auto !important; /* Занимает ровно столько места, сколько нужно */
+        margin: 0 !important;
+        order: 1; 
+        justify-content: flex-start !important;
+    }
+    .main-logo { height: 35px !important; } /* Чуть компактнее */
+    .brand-name { 
+        font-size: 16px !important; /* Уменьшаем шрифт, чтобы влезло */
+        margin-left: 10px !important;
+    }
+
+    /* ПРОФИЛЬ (СПРАВА) - Порядок 2 */
+    .auth-buttons {
+        width: auto !important;
+        flex: 0 1 auto !important;
+        margin: 0 !important;
+        order: 2;
+        justify-content: flex-end !important;
+        display: flex !important;
+    }
+    
+    /* Хак для уменьшения шрифта внутри профиля (он задан в JS) */
+    .auth-buttons div[style*="font-size:14px"] {
+        font-size: 12px !important; /* Ник поменьше */
+    }
+    .auth-buttons div[style*="width:35px"] {
+        width: 30px !important; height: 30px !important; /* Аватар поменьше */
+    }
+
+
+    /* --- 4. КНОПКИ МЕНЮ (СНИЗУ) - Порядок 3 --- */
+    .main-nav {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+        padding: 0 !important;
+        margin-top: 15px !important; /* Отступ от Лого/Профиля */
+        order: 3; /* Переносится на новую строку */
+        position: relative !important;
+        overflow: visible !important;
+    }
+
+    .nav-item {
+        width: 48% !important;
+        margin: 0 !important;
+        position: relative !important;
+        background: #0f0f0f !important;
+        border: 1px solid #333 !important;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        overflow: visible !important;
+    }
+
+    /* Активная кнопка */
+    .nav-item.active {
+        border-color: #ffbb33 !important;
+        background: #1a1a1a !important;
+        z-index: 5000 !important;
+    }
+
+    /* Текст кнопки */
+    .nav-item > span {
+        display: flex !important; justify-content: center !important; align-items: center !important; gap: 8px;
+        padding: 12px 5px !important; color: #bbb !important;
+        font-family: 'Orbitron', sans-serif !important; font-weight: 700 !important; font-size: 13px !important;
+        text-transform: uppercase; width: 100% !important; box-sizing: border-box !important;
+    }
+    .nav-item.active > span { color: #ffbb33 !important; }
+    .nav-item > span::after { content: '▼'; font-size: 8px; color: #555; transition: 0.3s; }
+    .nav-item.active > span::after { transform: rotate(180deg); color: #ffbb33; }
+
+
+    /* --- 5. ВЫПАДАЮЩЕЕ МЕНЮ --- */
+    .dropdown {
+        display: none !important;
+        position: absolute !important;
+        top: calc(100% + 5px) !important; 
+        left: 0 !important;
+        width: 150% !important;
+        min-width: 200px !important;
+        background: rgba(10, 10, 10, 0.98) !important;
+        border: 1px solid #ffbb33 !important;
+        border-radius: 4px !important;
+        box-shadow: 0 10px 50px rgba(0,0,0,1) !important;
+        z-index: 10000 !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+    }
+    
+    /* Правое меню ровняем по правому краю */
+    .nav-item:last-child .dropdown { left: auto !important; right: 0 !important; }
+
+    .nav-item.active .dropdown { display: flex !important; animation: dropDownAnim 0.2s ease-out; }
+    @keyframes dropDownAnim { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .dropdown a {
+        padding: 15px !important; text-align: left !important; padding-left: 20px !important;
+        color: #ddd !important; border-bottom: 1px solid #222; font-size: 13px !important; text-transform: uppercase;
+        background: transparent !important;
+    }
+    .dropdown a:last-child { border: none; }
+    .dropdown a:active { background: #ffbb33 !important; color: #000 !important; }
+    .arrow { display: none !important; }
+
+
+    /* --- 6. ОСТАЛЬНОЕ --- */
+    .selection-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; margin-top: 30px !important; padding-bottom: 50px !important; }
+    .select-card { width: 90% !important; height: 200px !important; margin: 0 auto !important; }
+    .nations-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; padding: 0 10px 40px 10px !important; }
+    .nation-btn { width: 100% !important; padding: 15px 5px !important; clip-path: none !important; border-radius: 4px; }
+    .tank-details-panel { width: 100% !important; right: -120% !important; z-index: 99999 !important; }
+    .tank-details-panel.open { right: 0 !important; }
+    .tree-container { overflow-x: auto !important; padding: 20px !important; justify-content: flex-start !important; }
+}
+</style>
+</head>
+<body class="workshop-page"> 
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-left-links">
+                <a href="https://store.steampowered.com/app/552100/Brick_Rigs/" target="_blank"><img src="img/br_logo.png" class="steam-logo"></a>
+                <a href="store.html">Премиум магазин</a>
+                <a href="support.html">Центр поддержки</a>
+                <a href="https://discord.gg/8zg4FYbn" target="_blank"><img src="img/icons8-discord-48.png" class="discord-logo"></a>
+            </div>
+            <div class="top-right-stats">
+                <a href="profile.html">Профиль</a>
+                <div class="stat gold-stat"><img src="img/Zoloto2.png"> <span>...</span></div>
+                <div class="stat xp-stat"><img src="img/xp_ico.png"> <span>...</span></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-zone">
+                <button id="back-btn" class="nav-back-btn" style="display: none;">
+                    ← НАЗАД
+                </button>
+
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:15px; color:inherit;">
+                    <img src="img/trehsotniki_logo.png" class="main-logo">
+                    <span class="brand-name">TREHSOTNIKI</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <span>ПРОЕКТ</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="news.html">Новости</a>
+                        <a href="maps.html">Карты</a>
+                        <a href="workshop.html">Мастерская</a>
+                        <a href="https://drive.google.com/drive/folders/13dSwBa0I4KRNHFESoOlXxc-BbAD4x64F" target="_blank" style="color: #00C851;">Скачать моды</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <span>РУКОВОДСТВА</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="newbie.html">Новичку</a>
+                        <a href="economy.html">Экономика</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="auth-buttons"></div>
+        </div>
+    </header>
+
+    <div class="workshop-wrapper">
+        
+        <div id="screen-type" class="selection-screen">
+            <h1 class="screen-title">ВЫБЕРИТЕ РОД ВОЙСК</h1>
+            <div class="selection-grid">
+                <div class="select-card" onclick="selectType('ground')">
+                    <div class="card-bg" style="background-image: url('img/bg_ground.jpg'); background-color:#222;"></div>
+                    <h2>ЗЕМЛЯ</h2>
+                    <p>Танки и бронетехника</p>
+                </div>
+                <div class="select-card locked" onclick="alert('Авиация в разработке!')">
+                    <div class="card-bg" style="background-image: url('img/bg_air.jpg'); background-color:#111;"></div>
+                    <h2>ВОЗДУХ</h2>
+                    <p>В разработке</p>
+                    <div class="lock-overlay">🔒</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-nation" class="selection-screen" style="display: none;">
+            <h1 class="screen-title">ВЫБЕРИТЕ НАЦИЮ</h1>
+            <div class="nations-grid"></div>
+        </div>
+
+        <div id="screen-tree" class="tree-screen" style="display: none;">
+            <div class="tree-container">
+                <div class="tree-inner" id="tree-container"></div>
+            </div>
+        </div>
+
+        <div class="tank-details-panel" id="tank-panel">
+    <button class="panel-close-btn" onclick="closePanel()">ЗАКРЫТЬ [ESC]</button>
+    
+    <div class="panel-header">
+        <div class="panel-img-bg"></div> 
+        <div class="panel-header-overlay"></div> <div class="panel-title-box">
+            <span class="class-badge" id="panel-class">ТЯЖЕЛЫЙ ТАНК</span>
+            <h2 id="panel-name">IS-7 Object 260</h2>
+        </div>
+    </div>
+    
+    <div class="panel-content">
+        <div class="panel-desc">
+            <p id="panel-desc">Описание отсутствует...</p>
+        </div>
+        
+        <div class="stats-grid">
+    <div class="stat-box">
+        <div class="stat-label">БРОНИРОВАНИЕ</div>
+        <div class="stat-value" id="stat-armor">-</div>
+        <div class="stat-bar"><div id="bar-armor" style="width: 0%"></div></div> 
+    </div>
+    <div class="stat-box">
+        <div class="stat-label">КАЛИБР</div>
+        <div class="stat-value" id="stat-gun">-</div>
+        <div class="stat-bar"><div id="bar-gun" style="width: 0%"></div></div>
+    </div>
+    <div class="stat-box">
+        <div class="stat-label">МОЩНОСТЬ</div>
+        <div class="stat-value" id="stat-engine">-</div>
+        <div class="stat-bar"><div id="bar-engine" style="width: 0%"></div></div>
+    </div>
+</div> <div class="panel-preview-box">
+    <img id="panel-preview-img" src="" alt="Изображение техники">
+    <div class="preview-border"></div>
+</div>
+
+    <div class="panel-actions">
+        <div class="price-container">
+            <div class="price-label">СТОИМОСТЬ ИССЛЕДОВАНИЯ</div>
+            <div class="price-val" id="panel-price">150,000 XP</div>
+        </div>
+        <button class="research-btn" id="buy-btn">ИССЛЕДОВАТЬ</button>
+    </div>
+</div>
+
+    </div>
+
+    <div id="auth-modal" class="modal-overlay">
+    <div class="modal-window">
+        <button class="close-modal" onclick="closeModal()">✕</button>
+        
+        <div class="modal-tabs">
+            <button id="tab-login" class="active" onclick="switchTab('login')">ВХОД</button>
+            <button id="tab-register" onclick="switchTab('register')">РЕГИСТРАЦИЯ</button>
+        </div>
+
+        <form id="form-login" class="auth-form active">
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="login-policy" required>
+                <label for="login-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">ВОЙТИ В СИСТЕМУ</button>
+        </form>
+
+        <form id="form-register" class="auth-form">
+            <div class="input-group">
+                <label>НОВЫЙ ПОЗЫВНОЙ</label>
+                <input type="text" placeholder="Придумайте ник" required>
+            </div>
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="reg-policy" required>
+                <label for="reg-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">СОЗДАТЬ АККАУНТ</button>
+        </form>
+    </div>
+</div>
+
+    <script type="module" src="js/workshop.js"></script>
+    <script src="js/mobile.js"></script>
+</body>
+</html>

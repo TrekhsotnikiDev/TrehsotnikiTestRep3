@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ангар | Trehsotniki</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/workshop.css">
+    <link rel="stylesheet" href="style/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Специфичные стили для Ангара, чтобы перебить сетку Дерева развития */
+        .hangar-container {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        .hangar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Авто-плитка */
+            gap: 25px;
+            justify-items: center;
+        }
+
+        /* Фильтры наций */
+        .hangar-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            color: #888;
+            padding: 10px 20px;
+            font-family: 'Orbitron';
+            cursor: pointer;
+            transition: 0.2s;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(255, 157, 0, 0.3);
+        }
+
+        /* Убираем лишние отступы у карточек в ангаре */
+        .br-row { gap: 0; }
+        .br-label { left: 10px; top: -15px; font-size: 10px; opacity: 0.7; }
+        
+        /* Заглушка, если танков нет */
+        .empty-hangar {
+            text-align: center;
+            color: #555;
+            font-family: 'Orbitron';
+            margin-top: 100px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="workshop-page"> 
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-left-links">
+                <a href="https://store.steampowered.com/app/552100/Brick_Rigs/" target="_blank"><img src="img/br_logo.png" class="steam-logo"></a>
+                <a href="store.html">Премиум магазин</a>
+                <a href="support.html">Центр поддержки</a>
+                <a href="https://discord.gg/8zg4FYbn" target="_blank"><img src="img/icons8-discord-48.png" class="discord-logo"></a>
+            </div>
+            <div class="top-right-stats">
+                <a href="profile.html">Профиль</a>
+                <div class="stat gold-stat"><img src="img/Zoloto2.png"> <span>...</span></div>
+                <div class="stat xp-stat"><img src="img/xp_ico.png"> <span>...</span></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-zone">
+    <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:15px; color:inherit;">
+        <img src="img/trehsotniki_logo.png" class="main-logo">
+        <span class="brand-name">TREHSOTNIKI</span>
+    </a>
+
+    <div style="width: 1px; height: 25px; background: #333; margin: 0 5px;"></div>
+
+    <button onclick="location.href='profile.html'" class="nav-back-btn" 
+            style="margin: 0; display: flex; align-items: center; gap: 8px; border-color: #333; color: #888;">
+        В ПРОФИЛЬ ↩
+    </button>
+</div>
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <span>ПРОЕКТ</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="news.html">Новости</a>
+                        <a href="maps.html">Карты</a>
+                        <a href="workshop.html">Мастерская</a>
+                        <a href="https://drive.google.com/drive/folders/13dSwBa0I4KRNHFESoOlXxc-BbAD4x64F" target="_blank" style="color: #00C851;">Скачать моды</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <span>РУКОВОДСТВА</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="newbie.html">Новичку</a>
+                        <a href="economy.html">Экономика</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="auth-buttons"></div>
+        </div>
+    </header>
+
+    <div class="workshop-wrapper">
+        
+        <div class="hangar-container">
+            <h1 style="text-align: center; font-family: 'Orbitron'; color: #fff; margin-bottom: 10px;">БОЕВОЙ АНГАР</h1>
+            <p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 30px;">ВСЯ ДОСТУПНАЯ ТЕХНИКА В ВАШЕМ РАСПОРЯЖЕНИИ</p>
+
+            <div class="hangar-filters" id="hangar-filters">
+                <button class="filter-btn active" onclick="filterHangar('all')">ВСЕ</button>
+                <button class="filter-btn" onclick="filterHangar('ussr')">СССР</button>
+                <button class="filter-btn" onclick="filterHangar('germany')">ГЕРМАНИЯ</button>
+                <button class="filter-btn" onclick="filterHangar('usa')">США</button>
+                <button class="filter-btn" onclick="filterHangar('uk')">БРИТАНИЯ</button>
+                <button class="filter-btn" onclick="filterHangar('france')">ФРАНЦИЯ</button>
+                <button class="filter-btn" onclick="filterHangar('japan')">ЯПОНИЯ</button>
+            </div>
+
+            <div id="hangar-grid" class="hangar-grid">
+                </div>
+        </div>
+
+        <div class="tank-details-panel" id="tank-panel">
+            <button class="panel-close-btn" onclick="closePanel()">ЗАКРЫТЬ [ESC]</button>
+            
+            <div class="panel-header">
+                <div class="panel-img-bg"></div> 
+                <div class="panel-header-overlay"></div> 
+                <div class="panel-title-box">
+                    <span class="class-badge" id="panel-class">-</span>
+                    <h2 id="panel-name">-</h2>
+                </div>
+            </div>
+            
+            <div class="panel-content">
+                <div class="panel-desc"><p id="panel-desc">...</p></div>
+                
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">БРОНИРОВАНИЕ</div>
+                        <div class="stat-value" id="stat-armor">-</div>
+                        <div class="stat-bar"><div id="bar-armor" style="width: 0%"></div></div> 
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">КАЛИБР</div>
+                        <div class="stat-value" id="stat-gun">-</div>
+                        <div class="stat-bar"><div id="bar-gun" style="width: 0%"></div></div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">МОЩНОСТЬ</div>
+                        <div class="stat-value" id="stat-engine">-</div>
+                        <div class="stat-bar"><div id="bar-engine" style="width: 0%"></div></div>
+                    </div>
+                </div> 
+
+                <div class="panel-preview-box">
+                    <img id="panel-preview-img" src="" alt="Изображение техники">
+                    <div class="preview-border"></div>
+                </div>
+
+                <div class="panel-actions">
+                    <div class="price-container">
+                        <div class="price-label">СТАТУС</div>
+                        <div class="price-val" style="color: #00C851;">В АНГАРЕ</div>
+                    </div>
+                    <button class="research-btn" style="background: #333; cursor: default;" disabled>ГОТОВ К БОЮ</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-window">
+             <button class="close-modal" onclick="closeModal()">✕</button>
+             <div id="auth-content-placeholder">Загрузка...</div>
+        </div>
+    </div>
+
+    <script type="module" src="js/hangar.js"></script>
+    <script src="js/mobile.js"></script>
+</body>
+</html>

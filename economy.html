@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trehsotniki | Экономика</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-left-links">
+                <a href="https://store.steampowered.com/app/552100/Brick_Rigs/" target="_blank"><img src="img/br_logo.png" class="steam-logo"></a>
+                <a href="store.html">Премиум магазин</a>
+                <a href="support.html">Центр поддержки</a>
+                <a href="https://discord.gg/8zg4FYbn" target="_blank"><img src="img/icons8-discord-48.png" class="discord-logo"></a>
+            </div>
+            <div class="top-right-stats">
+                <a href="profile.html">Профиль</a>
+                <div class="stat gold-stat"><img src="img/Zoloto2.png"> <span>...</span></div>
+                <div class="stat xp-stat"><img src="img/xp_ico.png"> <span>...</span></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-zone">
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:15px; color:inherit;">
+                    <img src="img/trehsotniki_logo.png" class="main-logo">
+                    <span class="brand-name">TREHSOTNIKI</span>
+                </a>
+            </div>
+            
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <span>ПРОЕКТ</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="news.html">Новости</a>
+                        <a href="maps.html">Карты</a>
+                        <a href="workshop.html">Мастерская</a>
+                        <a href="https://drive.google.com/drive/folders/13dSwBa0I4KRNHFESoOlXxc-BbAD4x64F" target="_blank" style="color: #00C851;">Скачать моды</a>
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <span>РУКОВОДСТВА</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="newbie.html">Новичку</a>
+                        <a href="economy.html">Экономика</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="auth-buttons">
+                <button class="login-btn-ghost" onclick="openModal('login')">ВХОД</button>
+                <button class="reg-btn-modern" onclick="openModal('register')">РЕГИСТРАЦИЯ</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header-animated">
+        <div class="page-header-bg" style="background-image: url('img/background_main_menu.png'); filter: hue-rotate(15deg);"></div>
+        <div class="page-header-content">
+            <h1 style="font-family:'Orbitron'; font-size: 42px; color: var(--accent); margin: 0; text-shadow: 0 0 20px #000;">ВОЕННЫЙ БЮДЖЕТ</h1>
+            <p style="color: #ccc; font-size: 16px; margin-top: 10px;">Информация о валютах, заработке и расходах на содержание техники.</p>
+        </div>
+    </section>
+
+    <main class="guide-container">
+        
+        <div class="eco-grid reveal">
+            <div class="eco-card">
+                <img src="img/Zoloto2.png" class="eco-icon">
+                <h3 class="eco-title" style="color: #ffcc00;">ЗОЛОТО</h3>
+                <p class="eco-desc">Основная валюта. Используется для покупки техники, снарядов и ремонта после боя.</p>
+            </div>
+            <div class="eco-card">
+                <img src="img/xp_ico.png" class="eco-icon">
+                <h3 class="eco-title" style="color: #ccc;">СВОБОДНЫЙ ОПЫТ</h3>
+                <p class="eco-desc">Ресурс для исследования новых модулей и прототипов техники в «Древе исследований».</p>
+            </div>
+        </div>
+
+    <div id="auth-modal" class="modal-overlay">
+    <div class="modal-window">
+        <button class="close-modal" onclick="closeModal()">✕</button>
+        
+        <div class="modal-tabs">
+            <button id="tab-login" class="active" onclick="switchTab('login')">ВХОД</button>
+            <button id="tab-register" onclick="switchTab('register')">РЕГИСТРАЦИЯ</button>
+        </div>
+
+        <form id="form-login" class="auth-form active">
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="login-policy" required>
+                <label for="login-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">ВОЙТИ В СИСТЕМУ</button>
+        </form>
+
+        <form id="form-register" class="auth-form">
+            <div class="input-group">
+                <label>НОВЫЙ ПОЗЫВНОЙ</label>
+                <input type="text" placeholder="Придумайте ник" required>
+            </div>
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="reg-policy" required>
+                <label for="reg-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">СОЗДАТЬ АККАУНТ</button>
+        </form>
+    </div>
+</div>
+
+        <h2 class="guide-section-title reveal">ТАБЛИЦА ДОХОДОВ</h2>
+        <p class="guide-text reveal">Награды начисляются автоматически после завершения матча в зависимости от вашей эффективности.</p>
+
+        <table class="eco-table reveal">
+            <thead>
+                <tr>
+                    <th>ДЕЙСТВИЕ</th>
+                    <th>ЗОЛОТО</th>
+                    <th>ОПЫТ (XP)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Уничтожение танка</td><td style="color:#ffcc00;">+1,500</td><td style="color:#aaa;">+250</td></tr>
+                <tr><td>Помощь в уничтожении</td><td style="color:#ffcc00;">+750</td><td style="color:#aaa;">+100</td></tr>
+                <tr><td>Критический урон (Модуль)</td><td style="color:#ffcc00;">+200</td><td style="color:#aaa;">+50</td></tr>
+                <tr><td>Захват точки (за секунду)</td><td style="color:#ffcc00;">+10</td><td style="color:#aaa;">+5</td></tr>
+                <tr><td style="color:#ff4444;">Уничтожение союзника</td><td style="color:#ff4444;">-5,000</td><td style="color:#ff4444;">-500</td></tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer><p>&copy; 2025 TREHSOTNIKI PROJECT.</p></footer>
+
+<script type="module" src="js/main.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

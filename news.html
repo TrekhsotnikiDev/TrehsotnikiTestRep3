@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trehsotniki | Новости</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header { padding: 150px 10% 60px; background: linear-gradient(to bottom, #000 0%, transparent 100%), url('img/background_main_menu.png') top center/cover no-repeat; position: relative; margin-bottom: 40px; }
+        .page-header::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.8), #050505); }
+        .page-title-content { position: relative; z-index: 2; }
+        .page-title { font-family: 'Orbitron'; font-size: 48px; color: var(--accent); text-shadow: 0 0 20px rgba(255,157,0,0.3); margin: 0; }
+        .page-subtitle { color: #888; font-size: 16px; max-width: 600px; margin-top: 10px; }
+        .news-container { max-width: 1000px; margin: 0 auto; padding: 0 20px 100px; position: relative; }
+        .news-container::before { content: ""; position: absolute; left: 50px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.1); }
+        .news-item { margin-bottom: 60px; padding-left: 80px; position: relative; }
+        .news-item::before { content: ""; position: absolute; left: 44px; top: 25px; width: 14px; height: 14px; background: var(--bg-black); border: 2px solid var(--accent); border-radius: 50%; z-index: 2; transition: 0.3s; box-shadow: 0 0 10px var(--bg-black); }
+        .news-item:hover::before { background: var(--accent); box-shadow: 0 0 15px var(--accent); }
+        .date-badge { display: inline-block; font-family: 'Orbitron'; color: #888; font-size: 12px; margin-bottom: 15px; letter-spacing: 1px; }
+        .news-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .news-card:hover { border-color: var(--accent); transform: translateX(10px); background: rgba(255,255,255,0.05); box-shadow: -10px 10px 30px rgba(0,0,0,0.5); }
+        .news-img { width: 100%; height: 300px; background-size: cover; background-position: center; border-bottom: 1px solid var(--border); filter: brightness(0.8); transition: 0.5s; }
+        .news-card:hover .news-img { filter: brightness(1); }
+        .news-content { padding: 30px; }
+        .tag { display: inline-block; padding: 5px 12px; font-size: 10px; font-weight: 700; border-radius: 2px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .tag.update { border: 1px solid var(--accent); color: var(--accent); background: rgba(255,157,0,0.1); }
+        .tag.event { border: 1px solid #00c851; color: #00c851; background: rgba(0,200,81,0.1); }
+        .tag.fix { border: 1px solid #33b5e5; color: #33b5e5; background: rgba(51,181,229,0.1); }
+        .news-content h3 { margin: 0 0 15px; font-family: 'Orbitron'; font-size: 24px; color: #fff; }
+        .news-content p { color: #aaa; font-size: 15px; line-height: 1.6; margin: 0; }
+        .patch-notes { margin-top: 20px; padding-left: 20px; color: #ccc; font-size: 14px; }
+        .patch-notes li { margin-bottom: 5px; }
+        .patch-notes li::marker { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-left-links">
+                <a href="https://store.steampowered.com/app/552100/Brick_Rigs/" target="_blank"><img src="img/br_logo.png" class="steam-logo"></a>
+                <a href="store.html">Премиум магазин</a>
+                <a href="support.html">Центр поддержки</a>
+                <a href="https://discord.gg/8zg4FYbn" target="_blank"><img src="img/icons8-discord-48.png" class="discord-logo"></a>
+            </div>
+            <div class="top-right-stats">
+                <a href="profile.html">Профиль</a>
+                <div class="stat gold-stat"><img src="img/Zoloto2.png"> <span>...</span></div>
+                <div class="stat xp-stat"><img src="img/xp_ico.png"> <span>...</span></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-zone">
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:15px; color:inherit;">
+                    <img src="img/trehsotniki_logo.png" class="main-logo">
+                    <span class="brand-name">TREHSOTNIKI</span>
+                </a>
+            </div>
+            
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <span>ПРОЕКТ</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="news.html">Новости</a>
+                        <a href="maps.html">Карты</a>
+                        <a href="workshop.html">Мастерская</a>
+                        <a href="https://drive.google.com/drive/folders/13dSwBa0I4KRNHFESoOlXxc-BbAD4x64F" target="_blank" style="color: #00C851;">Скачать моды</a>
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <span>РУКОВОДСТВА</span> <img src="img/menu_arrow.png" class="arrow">
+                    <div class="dropdown">
+                        <a href="newbie.html">Новичку</a>
+                        <a href="economy.html">Экономика</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="auth-buttons">
+                <button class="login-btn-ghost" onclick="openModal('login')">ВХОД</button>
+                <button class="reg-btn-modern" onclick="openModal('register')">РЕГИСТРАЦИЯ</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="page-title-content reveal">
+            <h1 class="page-title">БОРТОВОЙ ЖУРНАЛ</h1>
+            <p class="page-subtitle">Хронология разработки, патч-ноуты и важные объявления штаба.</p>
+        </div>
+    </section>
+
+    <div class="news-container">
+        <div class="news-item reveal">
+            <span class="date-badge">28 ДЕКАБРЯ 2025</span>
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('img/background_main_menu.png');"></div>
+                <div class="news-content">
+                    <span class="tag update">ОБНОВЛЕНИЕ 0.4.2</span>
+                    <h3>РЕБАЛАНС МОДУЛЕЙ</h3>
+                    <p>Критическое обновление физики повреждений. Изменена прочность топливных баков, исправлена коллизия башни.</p>
+                </div>
+            </div>
+        </div>
+        <div class="news-item reveal" style="transition-delay: 0.2s;">
+            <span class="date-badge">25 ДЕКАБРЯ 2025</span>
+            <div class="news-card">
+                <div class="news-content">
+                    <span class="tag event">ВАЖНОЕ СОБЫТИЕ</span>
+                    <h3>ЗАПУСК ОФИЦИАЛЬНОГО САЙТА</h3>
+                    <p>Мы официально переезжаем на новую веб-платформу. Активируйте аккаунт в Discord.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="modal-overlay">
+    <div class="modal-window">
+        <button class="close-modal" onclick="closeModal()">✕</button>
+        
+        <div class="modal-tabs">
+            <button id="tab-login" class="active" onclick="switchTab('login')">ВХОД</button>
+            <button id="tab-register" onclick="switchTab('register')">РЕГИСТРАЦИЯ</button>
+        </div>
+
+        <form id="form-login" class="auth-form active">
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="login-policy" required>
+                <label for="login-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">ВОЙТИ В СИСТЕМУ</button>
+        </form>
+
+        <form id="form-register" class="auth-form">
+            <div class="input-group">
+                <label>НОВЫЙ ПОЗЫВНОЙ</label>
+                <input type="text" placeholder="Придумайте ник" required>
+            </div>
+            <div class="input-group">
+                <label>EMAIL</label>
+                <input type="email" placeholder="mail@example.com" required>
+            </div>
+            <div class="input-group">
+                <label>ПАРОЛЬ</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="policy-check">
+                <input type="checkbox" id="reg-policy" required>
+                <label for="reg-policy">
+                    Подтверждаю согласие с 
+                    <a href="privacy.html">Политикой конфиденциальности</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">СОЗДАТЬ АККАУНТ</button>
+        </form>
+    </div>
+</div>
+
+    <footer><p>&copy; 2025 TREHSOTNIKI PROJECT.</p></footer>
+    
+<script type="module" src="js/main.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

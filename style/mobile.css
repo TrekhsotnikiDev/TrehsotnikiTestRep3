@@ -1,0 +1,496 @@
+/* style/mobile.css — УНИВЕРСАЛЬНЫЙ ПРЕСЕТ */
+
+@media screen and (max-width: 900px) {
+    /* 1. БАЗА */
+    body { overflow-y: auto !important; overflow-x: hidden !important; background-color: #050505; }
+    .workshop-wrapper { height: auto !important; overflow: visible !important; min-height: 100vh; }
+
+    /* 2. ВЕРХНИЙ БАР */
+    .top-bar { display: block !important; background: #000 !important; border-bottom: 1px solid #222; padding: 5px 0 !important; position: relative; z-index: 50; }
+    .top-bar-content { display: flex !important; flex-direction: column !important; gap: 0 !important; }
+    .top-right-stats { width: 100% !important; display: flex !important; justify-content: center !important; gap: 15px !important; order: 1 !important; }
+    .top-right-stats > a { display: none !important; }
+    .stat { background: #111; border: 1px solid #333; color: #ffbb33; padding: 4px 10px; border-radius: 4px; font-size: 11px !important; font-weight: 700; display: flex !important; align-items: center; gap: 5px; }
+    .stat img { height: 12px !important; width: auto !important; }
+    .top-left-links { display: none !important; }
+
+    /* 3. ШАПКА */
+    .main-header { height: auto !important; background: #080808 !important; padding: 0 !important; overflow: visible !important; position: relative !important; z-index: 100 !important; }
+    .header-container { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; justify-content: space-between !important; align-items: center !important; padding: 10px 10px !important; height: auto !important; gap: 0 !important; position: relative !important; overflow: visible !important; }
+    .nav-back-btn { display: none !important; }
+    .brand-zone { width: auto !important; flex: 0 1 auto !important; margin: 0 !important; order: 1; justify-content: flex-start !important; }
+    .main-logo { height: 35px !important; }
+    .brand-name { font-size: 16px !important; margin-left: 10px !important; }
+    .auth-buttons { width: auto !important; flex: 0 1 auto !important; margin: 0 !important; order: 2; justify-content: flex-end !important; display: flex !important; }
+    .auth-buttons div[style*="font-size:14px"] { font-size: 12px !important; }
+    .auth-buttons div[style*="width:35px"] { width: 30px !important; height: 30px !important; }
+
+    /* 4. КНОПКИ МЕНЮ */
+    .main-nav { width: 100% !important; display: flex !important; flex-direction: row !important; justify-content: space-between !important; gap: 10px !important; padding: 0 !important; margin-top: 15px !important; order: 3; position: relative !important; overflow: visible !important; }
+    .nav-item { width: 48% !important; margin: 0 !important; position: relative !important; background: #0f0f0f !important; border: 1px solid #333 !important; border-radius: 4px; transition: all 0.2s ease; overflow: visible !important; }
+    .nav-item.active { border-color: #ffbb33 !important; background: #1a1a1a !important; z-index: 5000 !important; }
+    .nav-item > span { display: flex !important; justify-content: center !important; align-items: center !important; gap: 8px; padding: 12px 5px !important; color: #bbb !important; font-family: 'Orbitron', sans-serif !important; font-weight: 700 !important; font-size: 13px !important; text-transform: uppercase; width: 100% !important; box-sizing: border-box !important; }
+    .nav-item.active > span { color: #ffbb33 !important; }
+    .nav-item > span::after { content: '▼'; font-size: 8px; color: #555; transition: 0.3s; }
+    .nav-item.active > span::after { transform: rotate(180deg); color: #ffbb33; }
+    
+    /* Выпадашка */
+    .dropdown { display: none !important; position: absolute !important; top: calc(100% + 5px) !important; left: 0 !important; width: 150% !important; min-width: 200px !important; background: rgba(10, 10, 10, 0.98) !important; border: 1px solid #ffbb33 !important; border-radius: 4px !important; box-shadow: 0 10px 50px rgba(0,0,0,1) !important; z-index: 10000 !important; flex-direction: column !important; padding: 0 !important; }
+    .nav-item:last-child .dropdown { left: auto !important; right: 0 !important; }
+    .nav-item.active .dropdown { display: flex !important; animation: dropDownAnim 0.2s ease-out; }
+    @keyframes dropDownAnim { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .dropdown a { padding: 15px !important; text-align: left !important; padding-left: 20px !important; color: #ddd !important; border-bottom: 1px solid #222; font-size: 13px !important; text-transform: uppercase; background: transparent !important; }
+    .dropdown a:last-child { border: none; }
+    .dropdown a:active { background: #ffbb33 !important; color: #000 !important; }
+    .arrow { display: none !important; }
+}
+
+@media screen and (max-width: 900px) {
+
+    /* --- HERO SECTION (Баннер) --- */
+    .hero-bg {
+        /* Убираем жесткую высоту, чтобы контент не наезжал друг на друга */
+        height: auto !important;
+        min-height: 100vh;
+        padding: 120px 20px 60px 20px !important; /* Большой отступ сверху под меню */
+        
+        /* Выстраиваем всё в колонку по центру */
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* Фоновая картинка */
+    .hero-bg-img {
+        /* Убираем анимацию зума на телефоне, чтобы не грузить проц и батарею */
+        animation: none !important; 
+    }
+
+    .hero-content {
+        margin-top: 0 !important;
+        width: 100%;
+    }
+
+    /* Логотип текстом */
+    .hero-logo {
+        max-width: 90% !important;
+        margin: 0 auto 20px auto !important;
+    }
+
+    .hero-content h1 {
+        font-size: 32px !important; /* Уменьшаем шрифт заголовка */
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 16px !important;
+        margin-top: 15px !important;
+    }
+
+    /* "Шутка" про активацию (текст внизу справа) */
+    .activation-joke {
+        /* Убираем absolute, иначе на маленьком экране она перекроет текст */
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
+        margin-top: 40px;
+        width: 100%;
+        text-align: center !important;
+        font-size: 12px !important;
+        color: rgba(255,255,255,0.3) !important;
+    }
+
+    /* --- КАРТОЧКИ КОМАНДЫ (Штаб разработки) --- */
+    /* Превращаем горизонтальные карточки в вертикальные */
+    .team-card {
+        flex-direction: column !important;
+        text-align: center;
+        padding: 30px 20px !important;
+        gap: 15px !important;
+    }
+
+    /* Переносим цветную полоску сбоку наверх */
+    .team-card::before {
+        width: 100% !important;
+        height: 3px !important;
+        top: 0 !important;
+        left: 0 !important;
+    }
+
+    .avatar {
+        width: 100px !important;
+        height: 100px !important;
+        margin: 0 auto; /* Центрируем аватар */
+    }
+
+    .team-info h4 {
+        font-size: 20px !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* --- ЗАГОЛОВКИ СЕКЦИЙ --- */
+    h2 {
+        font-size: 24px !important; /* Уменьшаем огромные заголовки H2 */
+        margin-bottom: 30px !important;
+    }
+}
+@media screen and (max-width: 900px) {
+
+    /* --- 1. ЗАГОЛОВОК СТРАНИЦЫ (HEADER) --- */
+    .page-header {
+        /* Уменьшаем высоту шапки */
+        padding: 100px 20px 40px !important; 
+        margin-bottom: 30px !important;
+        background-position: center !important;
+    }
+
+    .page-title {
+        font-size: 28px !important; /* Уменьшаем огромный шрифт 48px */
+        line-height: 1.1;
+    }
+
+    .page-subtitle {
+        font-size: 14px !important;
+    }
+
+    /* --- 2. КОНТЕЙНЕР НОВОСТЕЙ (ЛЕНТА) --- */
+    .news-container {
+        padding: 0 15px 60px !important; /* Уменьшаем боковые отступы */
+    }
+
+    /* Скрываем вертикальную линию слева (она съедает место) */
+    .news-container::before {
+        display: none !important;
+    }
+
+    /* --- 3. ЭЛЕМЕНТ НОВОСТИ --- */
+    .news-item {
+        /* Убираем отступ 80px слева, чтобы карточка была во всю ширину */
+        padding-left: 0 !important; 
+        margin-bottom: 40px !important;
+    }
+
+    /* Скрываем декоративную точку (кружок на линии) */
+    .news-item::before {
+        display: none !important;
+    }
+
+    /* Дата над карточкой */
+    .date-badge {
+        margin-bottom: 10px !important;
+        font-size: 11px !important;
+        color: var(--accent) !important; /* Делаем дату ярче, раз линии нет */
+    }
+
+    /* --- 4. КАРТОЧКА НОВОСТИ --- */
+    .news-img {
+        height: 180px !important; /* Уменьшаем высоту картинки (было 300px) */
+        
+        /* На мобилках нет hover, поэтому картинка должна быть сразу яркой */
+        filter: brightness(1) !important; 
+    }
+
+    .news-content {
+        padding: 20px !important; /* Меньше внутренние отступы */
+    }
+
+    .news-content h3 {
+        font-size: 20px !important;
+    }
+
+    .news-content p {
+        font-size: 14px !important;
+    }
+
+    /* Теги (Обновление / Важно) */
+    .tag {
+        margin-bottom: 10px !important;
+        padding: 4px 8px !important;
+    }
+}
+@media screen and (max-width: 900px) {
+
+    /* 1. ИСПРАВЛЕНИЕ ШАПКИ (Где оранжевый заголовок) */
+    .page-header {
+        /* Добавляем жесткие отступы по бокам 20px */
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        
+        /* Уменьшаем высоту шапки, чтобы не занимала пол-экрана */
+        padding-top: 100px !important; 
+        padding-bottom: 40px !important;
+    }
+
+    /* Уменьшаем огромный шрифт "ОПЕРАТИВНЫЕ КАРТЫ" */
+    .page-title {
+        font-size: 32px !important; /* Было 48px или больше */
+        line-height: 1.2 !important;
+        word-wrap: break-word !important; /* На случай длинных слов */
+    }
+
+    /* Текст описания под заголовком */
+    .page-subtitle {
+        font-size: 14px !important;
+        max-width: 100% !important;
+        margin-top: 15px !important;
+    }
+
+    /* 2. ИСПРАВЛЕНИЕ СЕТКИ С КАРТАМИ */
+    /* Я предполагаю, что класс контейнера карт .maps-grid или .grid-3 */
+    .maps-grid, .grid-3, .container { 
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Одна колонка */
+        gap: 25px !important;
+    }
+
+    /* 3. САМА КАРТОЧКА (ОДДЕРОВО) */
+    .map-card { 
+        width: 100% !important;
+        margin: 0 !important; /* Убираем лишние внешние отступы */
+    }
+    
+    /* Если картинка внутри карточки не тянется */
+    .map-card img {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+@media screen and (max-width: 900px) {
+
+    /* --- 1. КАРТОЧКИ ВАЛЮТ (ЗОЛОТО / ОПЫТ) --- */
+    .eco-grid {
+        display: grid !important;
+        /* Превращаем 2 колонки в 1 */
+        grid-template-columns: 1fr !important; 
+        gap: 20px !important; /* Расстояние между карточками */
+        width: 100% !important;
+    }
+
+    .eco-card {
+        width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Исправление сплющенной иконки */
+    .eco-icon {
+        width: auto !important; /* Разрешаем ширине быть автоматической */
+        height: 80px !important; /* Фиксируем высоту */
+        object-fit: contain !important; /* ГЛАВНОЕ: запрещает искажение пропорций */
+        margin-bottom: 15px !important;
+    }
+
+    /* --- 2. ШАПКА "ВОЕННЫЙ БЮДЖЕТ" --- */
+    .page-header-animated {
+        height: auto !important;
+        min-height: 250px !important; /* Чтобы фон был виден */
+        padding: 100px 20px 40px !important;
+    }
+    
+    .page-header-content h1 {
+        font-size: 32px !important; /* Уменьшаем гигантский шрифт */
+        line-height: 1.2 !important;
+    }
+
+    /* --- 3. ТАБЛИЦА (чтобы не вылезала за экран) --- */
+    .guide-container {
+        padding: 0 15px 40px !important;
+        overflow-x: hidden !important; /* Убираем горизонтальный скролл страницы */
+    }
+
+    .eco-table {
+        display: block !important; /* Разрешаем блочное поведение */
+        width: 100% !important;
+        overflow-x: auto !important; /* Добавляем скролл ТОЛЬКО таблице, если не влезет */
+        white-space: nowrap; /* Чтобы текст в ячейках не ломался уродливо */
+    }
+    
+    .eco-table th, .eco-table td {
+        padding: 15px 10px !important; /* Чуть компактнее отступы */
+        font-size: 13px !important;
+    }
+}
+/* --- СТИЛИ ДЛЯ ССЫЛКИ-ЗОЛОТА --- */
+a.gold-stat {
+    text-decoration: none; /* Убираем подчеркивание */
+    cursor: pointer;
+    transition: 0.3s;
+}
+/* При наведении делаем золото ярче или добавляем тень */
+a.gold-stat:hover {
+    filter: drop-shadow(0 0 5px var(--accent));
+    transform: scale(1.05);
+}
+
+/* --- СТИЛИ ДЛЯ КНОПКИ ПОДДЕРЖКИ (МОБИЛЬНОЙ) --- */
+.mob-support-btn {
+    display: none; /* На ПК она скрыта */
+}
+
+/* ПОКАЗЫВАЕМ ТОЛЬКО НА ТЕЛЕФОНЕ */
+@media screen and (max-width: 900px) {
+    .mob-support-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        
+        /* Внешний вид кнопки */
+        width: 24px;
+        height: 24px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%; /* Круглая */
+        
+        /* Текст (?) */
+        color: #aaa !important;
+        font-weight: 700;
+        font-size: 14px;
+        text-decoration: none !important;
+        margin-left: 15px; /* Отступ от опыта */
+        margin-right: 0 !important; /* Убираем лишние отступы справа */
+    }
+    
+    .mob-support-btn:hover {
+        background: var(--accent);
+        color: #000 !important;
+        border-color: var(--accent);
+    }
+
+    /* Чуть поправим контейнер, чтобы кнопка влезла */
+    .top-right-stats {
+        align-items: center !important;
+    }
+}
+/* ================================================= */
+/* === ЯДЕРНЫЙ ФИКС ДЛЯ МОБИЛЬНОЙ ШАПКИ (V2) === */
+/* ================================================= */
+
+@media screen and (max-width: 900px) {
+
+    /* 1. КОНТЕЙНЕР СТАТИСТИКИ */
+    /* Заставляем элементы стоять в ряд и не исчезать */
+    .top-right-stats {
+        display: flex !important;
+        flex-direction: row !important; /* Строго горизонтально */
+        align-items: center !important;
+        justify-content: center !important;
+        flex-wrap: nowrap !important; /* Запрещаем перенос строк */
+        width: 100% !important;
+        height: 40px !important; /* Фиксируем высоту */
+        background: #000 !important; /* Черный фон на всякий случай */
+        gap: 15px !important; /* Расстояние между элементами */
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 2. ССЫЛКА НА ПРОФИЛЬ (Скрываем слово "Профиль", оставляем только статы) */
+    /* Обычно на мобилках слово "Профиль" не влезает вместе с цифрами */
+    .top-right-stats > a[href="profile.html"] {
+        display: none !important; 
+    }
+
+    /* 3. ЗОЛОТО (ССЫЛКА) - САМОЕ ВАЖНОЕ */
+    a.gold-stat {
+        display: flex !important; /* Делаем блоком, чтобы видеть */
+        align-items: center !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #ffbb33 !important; /* Принудительно оранжевый цвет */
+        font-weight: 700 !important;
+        text-decoration: none !important;
+        font-size: 11px !important;
+    }
+    
+    /* Картинка золота */
+    a.gold-stat img {
+        display: block !important;
+        width: 14px !important;
+        height: auto !important;
+        margin-right: 5px !important;
+    }
+
+    /* 4. ОПЫТ (Оставляем как есть, но страхуем) */
+    .xp-stat {
+        display: flex !important;
+        align-items: center !important;
+        color: #888 !important;
+        font-size: 11px !important;
+    }
+    .xp-stat img {
+        width: 14px !important;
+        margin-right: 5px !important;
+    }
+
+@media screen and (max-width: 900px) {
+    /* 1. Увеличиваем высоту всей верхней плашки, чтобы всё влезло */
+    .top-bar {
+        height: auto !important; /* Убираем фикс 35px */
+        min-height: 45px !important;
+        padding: 5px 0 !important;
+        overflow: visible !important;
+    }
+
+    .top-bar-content {
+        height: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important; /* Центрируем всё */
+        overflow: visible !important;
+    }
+
+    /* 2. Контейнер со статами */
+    .top-right-stats {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important; /* Компактные отступы */
+        position: relative !important;
+        width: 100% !important;
+    }
+
+    /* Скрываем ссылку "Профиль" — она занимает слишком много места и ломает верстку */
+    .top-right-stats > a[href="profile.html"] {
+        display: none !important;
+    }
+
+    /* 3. Золото и Опыт (делаем их компактнее) */
+    .stat {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 4px 8px !important;
+        border-radius: 4px;
+        font-size: 11px !important;
+        margin: 0 !important;
+    }
+
+    /* 4. КНОПКА ПОДДЕРЖКИ (ФИНАЛ) */
+    .mob-support-btn {
+        display: flex !important;
+        /* Принудительные размеры */
+        width: 26px !important;
+        height: 26px !important;
+        min-width: 26px !important;
+        
+        /* Цвета из твоего дизайна */
+        background: #111 !important;
+        border: 1px solid #ff9d00 !important; /* Акцентный оранжевый */
+        border-radius: 50% !important;
+        
+        /* Центрирование текста */
+        align-items: center !important;
+        justify-content: center !important;
+        
+        /* Текст */
+        color: #ff9d00 !important;
+        font-weight: 900 !important;
+        font-size: 14px !important;
+        text-decoration: none !important;
+        
+        /* Чтобы не улетала */
+        margin-left: 5px !important;
+        flex-shrink: 0 !important; /* Запрещаем сжиматься */
+    }
+}
+    }
+
