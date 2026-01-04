@@ -15,7 +15,7 @@ const MILITARY_RANKS = [
 ];
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDWqbVh-eFA0A9uPgAf_q8fg4jP7rNnQDk",
+  apiKey: "AIzaSyDNo6sI41rRfupv-aV33z037Sftn1tuUkM",
   authDomain: "trehsotniki-base.firebaseapp.com",
   projectId: "trehsotniki-base",
   storageBucket: "trehsotniki-base.firebasestorage.app",
@@ -431,4 +431,5 @@ document.addEventListener('keydown', (e) => {
         closePanel(); // Закрыть панель танка
     }
 });
+
 function toRoman(num) { return {1:'I',2:'II',3:'III',4:'IV',5:'V'}[num]; }
